@@ -39,11 +39,6 @@
 }
 
 .panel-buttons {
-	background-color: cyan;
 	float: left;
 	margin: 0 10px;
-}
-
-.isRed {
-	background-color: red;
 }
