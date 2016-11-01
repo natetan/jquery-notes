@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	$('#hideButton').on('click', function() {
 		$('#panel1').hide(500);
 		$('#panel2').hide(750);
@@ -47,10 +48,26 @@ $(document).ready(function() {
 		$('#panel3').toggle(750);
 	});
 
+	var count = 0;
 	$('#turnRedButton').on('click', function() {
-		$('.headers').css({
-			backgroundColor: 'red',
-		});
+		if (count % 2 == 0) {
+			$('.headers').css({
+				backgroundColor: 'red',
+			});
+			$('#turnRedButton').css({
+				backgroundColor: 'red',
+			});
+			$('#turnRedButton').html('Turn Off Red');
+		} else {
+			$('.headers').css({
+				backgroundColor: '#D8F0DF', // this is the color os bg-success
+			});
+			$('#turnRedButton').css({
+				backgroundColor: 'cyan',
+			});
+			$('#turnRedButton').html('Turn Red');
+		}
+		count++;
 	});
 
 });
