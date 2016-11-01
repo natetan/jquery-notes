@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+
 	$('#hideButton').on('click', function() {
 		$('#panel1').hide(500);
 		$('#panel2').hide(750);
@@ -54,17 +54,15 @@ $(document).ready(function() {
 			$('.headers').css({
 				backgroundColor: 'red',
 			});
-			$('#turnRedButton').css({
-				backgroundColor: 'red',
-			});
+			document.querySelector('#turnRedButton').classList.add('btn-danger');
+			document.querySelector('#turnRedButton').classList.remove('btn-info');
 			$('#turnRedButton').html('Turn Off Red');
 		} else {
 			$('.headers').css({
-				backgroundColor: '#D8F0DF', // this is the color os bg-success
+				backgroundColor: '#D8F0DF', // this is the color is bg-success
 			});
-			$('#turnRedButton').css({
-				backgroundColor: 'cyan',
-			});
+			document.querySelector('#turnRedButton').classList.remove('btn-danger');
+			document.querySelector('#turnRedButton').classList.add('btn-info');
 			$('#turnRedButton').html('Turn Red');
 		}
 		count++;
