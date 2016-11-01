@@ -44,6 +44,6 @@
 	margin: 0 10px;
 }
 
-#turnRedButton {
+.isRed {
 	background-color: red;
 }
