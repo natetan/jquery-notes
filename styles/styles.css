@@ -1,0 +1,32 @@
+#container {
+	width: 80%;
+}
+
+#main-content {
+	background-color: silver;
+	border-radius: 20px;
+	padding: 3%;
+	margin: 3%;
+}
+
+.headers {
+	text-align: center;
+	padding: 5px;
+	border-radius: 20px 20px 0 0;
+}
+
+.header-content {
+	background-color: white;
+	text-align: center;
+	border-radius: 0 0 20px 20px;
+	height: 300px;
+}
+
+#container, .center-absolute {
+	margin: auto;
+}
+
+.header-content-heading {
+	margin: 0 0 5% 0;
+}
+
