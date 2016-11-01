@@ -16,22 +16,28 @@
 	<body>
 		<div id="container">
 			<div id="main-content">
+				<div id="button-panel">
+					<button class="btn panel-buttons" id="hideButton">Hide All</button>
+					<button class="btn panel-buttons" id="showButton">Show All</button>
+					<button class="btn panel-buttons" id="slideUpButton">Slide Up</button>
+					<button class="btn panel-buttons" id="slideDownButton">Slide Down</button>
+				</div>
 				<div class="row">
-					<div class="col-xs-4 columns">
+					<div class="col-xs-4 columns" id="panel1">
 						<div class="bg-success headers">Heading 1</div>
 						<div class="header-content">
 							<h3 class="header-content-heading">This will have a button</h3>
 							<button class="btn center-absolute">Button 1</button>
 						</div>
 					</div>
-					<div class="col-xs-4 columns">
+					<div class="col-xs-4 columns" id="panel2">
 						<div class="bg-success headers">Heading 2</div>
 						<div class="header-content">
 							<h3 class="header-content-heading">This will have a button</h3>
 							<button class="btn center-absolute">Button 2</button>
 						</div>
 					</div>
-					<div class="col-xs-4 columns">
+					<div class="col-xs-4 columns" id="panel3">
 						<div class="bg-success headers">Heading 3</div>
 						<div class="header-content">
 							<h3 class="header-content-heading">This will have a button</h3>
@@ -44,7 +50,7 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<!-- jQuery according to node modules -->
-		<script src="node_modules/jquery/src/jquery.js"></script>
+		<script src="node_modules/jquery/dist/jquery.js"></script>
 		<script src="scripts/scripts.js"></script>	
 	</body>
 </html>
