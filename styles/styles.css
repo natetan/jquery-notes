@@ -17,7 +17,6 @@
 
 .header-content {
 	background-color: white;
-	text-align: center;
 	border-radius: 0 0 20px 20px;
 	height: 300px;
 }
@@ -30,3 +29,17 @@
 	margin: 0 0 5% 0;
 }
 
+#button-panel {
+	margin: 0 0 10px 0;
+	overflow: hidden;
+}
+
+#button-panel, .header-content {
+	text-align: center;
+}
+
+.panel-buttons {
+	background-color: cyan;
+	float: left;
+	margin: 0 10px;
+}
