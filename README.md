@@ -1,5 +1,7 @@
 # Introduction to jQuery
 
+## Currently deplyed on [UW Student Servers](http://students.washington.edu/swifties/jquery-notes/)
+
 ## Installation
 - `npm install jquery`
 - `npm install bootstrap@3`
