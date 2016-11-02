@@ -35,7 +35,6 @@ $('element').on('click', function() {
 ```
 
 ### Installation
-This requires Bootstrap and jQuery
 `npm install jquery`
 `npm install bootstrap@3`
 
