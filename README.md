@@ -17,6 +17,16 @@
 <script src="node_modules/jquery/dist/jquery.js"></script>
 ```
 
+### JavaScript should start with this code snippet
+```JavaScript
+// This lets all the html and css load before using jQuery on the elements
+$(document).ready(function() {
+	
+	// Code goes here
+
+});
+```
+
 ## What I've learned
 
 ### Lesson 1
