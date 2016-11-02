@@ -1,6 +1,6 @@
 # Introduction to jQuery
 
-## Currently deplyed on [UW Student Servers](http://students.washington.edu/swifties/jquery-notes/)
+## Currently deployed on [UW Student Servers](http://students.washington.edu/swifties/jquery-notes/)
 
 ## Installation
 - `npm install jquery`
