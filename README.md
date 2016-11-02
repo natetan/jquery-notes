@@ -1,8 +1,8 @@
 # Introduction to jQuery
 
 ## Installation
-###### `npm install jquery`
-###### `npm install bootstrap@3`
+- `npm install jquery`
+- `npm install bootstrap@3`
 
 ## Relative links and scripts for `node_modules`
 ```HTML
