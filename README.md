@@ -62,3 +62,31 @@ $('element').on('click', function() {
 	$('element').fadeToggle(750);
 });
 ```
+
+### Lesson 2
+- Change innerHTML
+- More mouse events
+
+```JavaScript
+$('#element1').html('mouse here!');
+
+$('#element1').on('mouseenter', function() {
+	$('#panel2').hide(750);
+	$('#element1').html('mouse enter!');
+});
+
+$('#element1').on('mouseleave', function() {
+	$('#panel2').show(750);
+	$('#element1').html('mouse leave!');
+});
+
+$('#btn2').on('click', function() {
+	$('#panel2').find('h3').html('You chaned the text of this header!')
+});
+
+$('#btn3').html('hover over me!');
+
+$('#btn3').on('mouseover', function() {
+	$('#panel1').toggle(750);
+});
+```
