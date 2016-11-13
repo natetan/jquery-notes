@@ -68,4 +68,6 @@ $(document).ready(function() {
 		count++;
 	});
 
+	$('#btn1').html('this is button 1');
+
 });
