@@ -68,6 +68,26 @@ $(document).ready(function() {
 		count++;
 	});
 
-	$('#btn1').html('this is button 1');
+	$('#btn1').html('mouse here!');
+
+	$('#btn1').on('mouseenter', function() {
+		$('#panel2').hide(750);
+		$('#btn1').html('mouse enter!');
+	});
+
+	$('#btn1').on('mouseleave', function() {
+		$('#panel2').show(750);
+		$('#btn1').html('mouse leave!');
+	});
+
+	$('#btn2').on('click', function() {
+		$('#panel2').find('h3').html('You chaned the text of this header!')
+	});
+
+	$('#btn3').html('hover over me!');
+
+	$('#btn3').on('mouseover', function() {
+		$('#panel1').toggle(750);
+	});
 
 });
