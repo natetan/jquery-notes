@@ -68,26 +68,38 @@ $(document).ready(function() {
 		count++;
 	});
 
-	$('#btn1').html('mouse here!');
+	// $('#btn1').html('mouse here!');
 
-	$('#btn1').on('mouseenter', function() {
-		$('#panel2').hide(750);
-		$('#btn1').html('mouse enter!');
-	});
+	// $('#btn1').on('mouseenter', function() {
+	// 	$('#panel2').hide(750);
+	// 	$('#btn1').html('mouse enter!');
+	// });
 
-	$('#btn1').on('mouseleave', function() {
-		$('#panel2').show(750);
-		$('#btn1').html('mouse leave!');
-	});
+	// $('#btn1').on('mouseleave', function() {
+	// 	$('#panel2').show(750);
+	// 	$('#btn1').html('mouse leave!');
+	// });
 
-	$('#btn2').on('click', function() {
-		$('#panel2').find('h3').html('You chaned the text of this header!')
-	});
+	// $('#btn2').on('click', function() {
+	// 	$('#panel2').find('h3').html('You chaned the text of this header!')
+	// });
 
-	$('#btn3').html('hover over me!');
+	// $('#btn3').html('hover over me!');
 
-	$('#btn3').on('mouseover', function() {
-		$('#panel1').toggle(750);
+	// $('#btn3').on('mouseover', function() {
+	// 	$('#panel1').toggle(750);
+	// });
+
+	// Refactors the code so DRY principle is notviolated
+
+	// Selects all elements with the class 'center-absolute'
+	// this keyword gets whatever is selected
+	// Grabs the attribute data-panelid
+	// Sets chosen panel id (from attr) as the selector
+	$('.center-absolute').on('click', function() {
+		var panelid = $(this).attr('data-panelid');
+		$('#'+panelid).slideToggle(1500);
+		$('#'+panelid+' .headers').html('See ya'); // equivalent to CSS selector (#panel1 .headers)
 	});
 
 });
