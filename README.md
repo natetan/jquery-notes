@@ -31,13 +31,12 @@ $(document).ready(function() {
 
 ## What I've learned
 
-### Lesson 1
+### Lesson 1: Selectors
 - Show and hide
 - Fade in and out
 - Toggle
 - Calling element css
 
-### Examples
 ```JavaScript
 // Hiding an element
 $('element').hide();
@@ -63,7 +62,7 @@ $('element').on('click', function() {
 });
 ```
 
-### Lesson 2
+### Lesson 2: Event Listeners
 - Change innerHTML
 - More mouse events
 
@@ -88,5 +87,46 @@ $('#btn3').html('hover over me!');
 
 $('#btn3').on('mouseover', function() {
 	$('#panel1').toggle(750);
+});
+```
+### Lesson 3: The DRY Principle
+- Multiple selections with one function
+- data-x attributes
+
+```HTML
+<div class="col-xs-4 columns" id="panel1">
+	<div class="bg-success headers" id="header1">Panel 1</div>
+	<div class="header-content">
+		<h3 class="header-content-heading">This will have a button</h3>
+		<button class="btn btn-primary center-absolute" id="btn1" data-panelid="panel1" data-headerid="header1">Button 1</button>
+	</div>
+</div>
+<div class="col-xs-4 columns" id="panel2">
+	<div class="bg-success headers" id="header2">Panel 2</div>
+	<div class="header-content">
+		<h3 class="header-content-heading">This will have a button</h3>
+		<button class="btn btn-primary center-absolute" id="btn2" data-panelid="panel2" data-headerid="header2">Button 2</button>
+	</div>
+</div>
+<div class="col-xs-4 columns" id="panel3">
+	<div class="bg-success headers" id="header3">Panel 3</div>
+	<div class="header-content">
+		<h3 class="header-content-heading">This will have a button</h3>
+		<button class="btn btn-primary center-absolute" id="btn3" data-panelid="panel3" data-headerid="header3">Button 3</button>
+	</div>
+</div>
+```
+
+```JavaScript
+// Refactors the code so DRY principle is notviolated
+
+// Selects all elements with the class 'center-absolute'
+// this keyword gets whatever is selected
+// Grabs the attribute data-panelid
+// Sets chosen panel id (from attr) as the selector
+$('.center-absolute').on('click', function() {
+	var panelid = $(this).attr('data-panelid');
+	$('#'+panelid).slideToggle(1500);
+	$('#'+panelid+' .headers').html('See ya'); // equivalent to CSS selector (#panel1 .headers)
 });
 ```
