@@ -130,3 +130,71 @@ $('.center-absolute').on('click', function() {
 	$('#'+panelid+' .headers').html('See ya'); // equivalent to CSS selector (#panel1 .headers)
 });
 ```
+
+### Lesson 4: DOM Traversal
+- Targeting a certain element
+- Siblings
+- Parents
+- find, filter, is
+- addClass, removeClass
+
+```HTML
+<ul class="list">
+	<li>one</li>
+	<li class="special">two</li>
+	<li>three</li>
+	<li>four
+		<ul class="sublist">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+	</li>
+</ul>
+```
+
+```JavaScript
+$('li').first().html('first li in DOM');
+$('li').last().html('last li in DOM');
+// Grabs li of index 2
+$('li').eq(2).html('this is the second index li');
+// Grabs first ui's direct children, so it grabs <li> one-three
+$('ui:first').children(); 
+// Grabs first li's siblings (in the same level hierarchy), so it grabs <li> two-four
+$('li:first').siblings(); 
+// Gets index 4 li's direct parent, which is the sublist ul
+$('li').eq(4).parent();
+// Gets the parent of the sublist, which is the fourth li (index 3 li)
+$('li').eq(4).parent().parent();
+// Get's the fourth li's previous sibling, which is thrid li (index 2)
+$('li').eq(4).parent().parent().prev();
+// Gets the first li's next sibling, which is 2nd li
+$('li').first().next();
+// Gets the 5th li index's closest element with the class of listi
+$('li').eq(5).closest('.list');
+
+// Adding and removing classes
+$('li').on('click', function() {
+	$(this).removeClass('special');
+	$(this).siblings().addClass('special');
+});
+
+// Finds all the lis in the element with class of list and adds the special class to only the first
+$('.list').find('li').filter(':first').addClass('special');
+// Finds all the lis in the element with the class of list with the special class and removes them
+$('.list').find('li').filter('.special').remove();
+// Exact same thing without the use of filter
+// However, it removes ALL elements with class special, rather than just lis with special
+$('.list').find('.special').remove();
+// This looks through the entire page to look for special, rather than a certain spot
+// Not very efficient JavaScript
+$('.special').remove();
+
+// Checks if the li has the special class and alerts user if it does
+$('li').on('click', function() {
+	$(this).hide();
+	if ( $(this).is('.special') ) {
+		alert('special!');
+	}
+});
+```
