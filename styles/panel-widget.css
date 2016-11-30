@@ -1,10 +1,15 @@
+#main-content {
+	width: 80%;
+	margin: auto;
+	margin-top: 20px;
+}
+
 .tab-panels ul {
 	margin: 0;
 	padding: 0;
 }
 
 .tab-panels ul li {
-	list-style-type: none;
 	display: inline-block;
 	background: #999;
 	margin: 0;
@@ -13,6 +18,14 @@
 	color: #fff;
 	font-weight: 200;
 	cursor: pointer;
+}
+
+.tab-panels ul li, .panel li {
+	list-style-type: none;
+}
+
+.panel li {
+	padding: 10px;
 }
 
 .tab-panels ul li:hover, .tab-panels ul li.active {
