@@ -198,3 +198,143 @@ $('li').on('click', function() {
 	}
 });
 ```
+
+### Lesson 5: Callbacks (Panel Widgets)
+- this
+- callback
+
+```HTML
+<div id="main-content">
+	<div class="tab-panels">
+		<ul class="tabs">
+			<li data-panelId="panel1" class="active">panel1</li>
+			<li data-panelId="panel2">panel2</li>
+			<li data-panelId="panel3">panel3</li>
+			<li data-panelId="panel4">panel4</li>
+		</ul>
+		<div id="panel1" class="panel active">
+			<li>content1</li>
+			<li>content1</li>
+			<li>content1</li>
+			<li>content1</li>
+			<li>content1</li>
+		</div>
+		<div id="panel2" class="panel">
+			<li>content2</li>
+			<li>content2</li>
+			<li>content2</li>
+			<li>content2</li>
+			<li>content2</li>
+		</div>
+		<div id="panel3" class="panel">
+			<li>content3</li>
+			<li>content3</li>
+			<li>content3</li>
+			<li>content3</li>
+			<li>content3</li>
+		</div>
+		<div id="panel4" class="panel">
+			<li>content4</li>
+			<li>content4</li>
+			<li>content4</li>
+			<li>content4</li>
+			<li>content4</li>
+		</div>
+	</div>
+</div>
+```
+
+```CSS
+#main-content {
+	width: 80%;
+	margin: auto;
+	margin-top: 20px;
+}
+
+.tab-panels ul {
+	margin: 0;
+	padding: 0;
+}
+
+.tab-panels ul li {
+	display: inline-block;
+	background: #999;
+	margin: 0;
+	padding: 3px 10px;
+	border-radius: 10px 10px 0 0;
+	color: #fff;
+	font-weight: 200;
+	cursor: pointer;
+}
+
+.tab-panels ul li, .panel li {
+	list-style-type: none;
+}
+
+.panel li {
+	padding: 10px;
+}
+
+.tab-panels ul li:hover, .tab-panels ul li.active {
+	color: #fff;
+	background: #666;
+}
+
+.tab-panels .panel {
+	display: none;
+	background: #c9c9c9;
+	padding 30px;
+	border-radius: 0 0 10px 10px;
+}
+
+.tab-panels .panel.active {
+	display: block;
+}
+```
+
+```JavaScript
+$(document).ready(function() {
+
+	$('.tab-panels .tabs li').on('click', function() {
+		// Gets the list of the closest tabs (in the case that there are multiple)
+		var tabs = $(this).closest('.tab-panels');
+		tabs.find('.tabs li.active').removeClass('active');
+		$(this).addClass('active');
+
+		// Uses the attribute to get the panel's id
+		var panelId = $(this).attr('data-panelId');
+
+		// Grabs the element with that id
+		var content = $('#' + panelId);
+
+		// Gets siblings of the panel with the class of panel to avoid ul.tabs
+		// This is a callback function: executes after slideup
+		content.siblings().filter('.panel').slideUp(300, function() {
+			content.slideDown(300);
+		});
+	});
+
+	// Another way
+
+	$('.tab-panels .tabs li').on('click', function() {
+		var panel = $(this).closest('.tab-panels');
+		panel.find('.tabs li.active').removeClass('active');
+		$(this).addClass('active');
+
+		// Figure out which panel to show
+		var panelToShow = $(this).attr('data-panelId');
+
+		// Hide current panel
+		panel.find('.panel.active').slideUp(300, showNextPanel);
+
+		// Show next panel
+		function showNextPanel() {
+			$(this).removeClass('active');
+			$('#' + panelToShow).slideDown(300, function() {
+				$(this.addClass('active'));
+			});
+		}
+	});
+
+});	
+```
