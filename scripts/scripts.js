@@ -119,20 +119,28 @@ $(document).ready(function() {
 
 	$('li').first().html('first li in DOM');
 	$('li').last().html('last li in DOM');
+
 	// Grabs li of index 2
 	$('li').eq(2).html('this is the second index li');
+
 	// Grabs first ui's direct children, so it grabs <li> one-three
 	$('ui:first').children(); 
+
 	// Grabs first li's siblings (in the same level hierarchy), so it grabs <li> two-four
 	$('li:first').siblings(); 
+
 	// Gets index 4 li's direct parent, which is the sublist ul
 	$('li').eq(4).parent();
+
 	// Gets the parent of the sublist, which is the fourth li (index 3 li)
 	$('li').eq(4).parent().parent();
+
 	// Get's the fourth li's previous sibling, which is thrid li (index 2)
 	$('li').eq(4).parent().parent().prev();
+
 	// Gets the first li's next sibling, which is 2nd li
 	$('li').first().next();
+	
 	// Gets the 5th li index's closest element with the class of listi
 	$('li').eq(5).closest('.list');
 
