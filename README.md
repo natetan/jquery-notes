@@ -8,8 +8,8 @@
 2. `cd jquery-notes`
 3. `npm install`  
 
-**OR**  
-
+**or** (*alternative to step 3*)  
+  
 - `npm install jquery`
 - `npm install bootstrap@3`
 
