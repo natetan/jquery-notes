@@ -338,3 +338,99 @@ $(document).ready(function() {
 
 });	
 ```
+
+### Lesson 6: Slider Widget
+- Caching the DOM
+- Animation
+- Intervals
+
+```HTML
+<div class="container">
+  <div class="header">
+    <h1 class="text-muted">jQuery Slider - Spidey!</h1>
+    <h2 class="text-muted">Hover over slider to pause</h2>
+  </div>
+  <div id="slider">
+    <ul class="slides">
+      <li class="slide slide1">slide1</li>
+      <li class="slide slide2">slide2</li>
+      <li class="slide slide3">slide3</li>
+      <li class="slide slide4">slide4</li>
+      <li class="slide slide5">slide5</li>
+      <li class="slide slide1">slide1</li>
+    </ul>
+  </div>
+</div>
+```
+
+```CSS
+#slider {
+  width: 720px;
+  height: 400px;
+  overflow: hidden;
+}
+
+#slider .slides {
+  display: block;
+  width: 6000px;
+  height: 400px;
+  margin: 0;
+  padding: 0;
+}
+
+#slider .slide {
+  float: left;
+  list-style-type: none;
+  width: 720px;
+  height: 400px;
+}
+
+.slide1 {background: url('../images/tasm2-building.jpg');}
+.slide2 {background: url('../images/spider-highrise.jpg');}
+.slide3 {background: url('../images/spider-triple-threat.jpeg');}
+.slide4 {background: url('../images/spider-venom.jpg');}
+.slide5 {background: url('../images/tasm2-end.jpg');}
+
+.slide1, .slide2, .slide3, .slide4, .slide5 {
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+```
+
+```JavaScript
+$(function() {
+
+	// Configurations for the slider
+	var width = 720; // default width of the slider images
+	var animationSpeed = 1000; // how fast the slider changes images
+	var pause = 2500; // the interval before the slider slides again
+	var currentSlide = 1; // Keeps track of the slide we're on
+
+	// Caching the DOM so it does not have to search entire DOM again
+	var $slider = $('#slider');
+	var $slideContainer = $slider.find('.slides');
+	var $slides = $slideContainer.find('.slide');
+
+	var interval;
+
+	function startSlider() {
+		interval = setInterval(function() {
+			$slideContainer.animate({'margin-left': '-=' + width + 'px'}, animationSpeed, function() {
+				currentSlide++;
+				if (currentSlide == $slides.length) {
+					currentSlide = 1;
+					$slideContainer.css('margin-left', 0);
+				}
+			});
+		}, pause);
+	}
+
+	function pauseSlider() {
+		clearInterval(interval);
+	}
+
+	$slider.on('mouseenter', pauseSlider).on('mouseleave', startSlider);
+
+	startSlider();
+})
+```
