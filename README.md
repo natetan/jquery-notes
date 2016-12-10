@@ -3,8 +3,13 @@
 ## Currently deployed on [UW Student Servers](http://students.washington.edu/swifties/jquery-notes/)
 
 ## Installation
-- `npm install jquery`
-- `npm install bootstrap@3`
+
+1. `git clone https://github.com/yulongtan/jquery-notes.git
+2. `cd jquery-notes`
+3. `npm install`
+**OR**
+`npm install jquery`
+`npm install bootstrap@3`
 
 ## Relative links and scripts for `node_modules`
 ```HTML
