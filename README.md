@@ -6,12 +6,8 @@
 
 1. `git clone https://github.com/yulongtan/jquery-notes.git`
 2. `cd jquery-notes`
-3. `npm install`  
-
-**or** (*alternative to step 3*)  
-  
-- `npm install jquery`
-- `npm install bootstrap@3`
+3. `npm install jquery`  
+4. `npm install bootstrap@3`
 
 ## Relative links and scripts for `node_modules`
 ```HTML
