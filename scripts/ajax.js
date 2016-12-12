@@ -4,7 +4,7 @@ $(function() {
 
 	$.ajax({
 		type: 'GET',
-		url: 'api/orders',
+		url: 'api/orders.json',
 		success: function(data) {
 			console.log('success', data);
 
