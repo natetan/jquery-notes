@@ -14,14 +14,30 @@
   <div id="main-content" class="bg-success">
       <h1 class="headers">jQuery Ajax Example</h1>
       <h2 class="headers">Coffee Orders</h2>
-      <ul id="orders">
+      <ul id="orders"></ul>
         <!-- This gets filled in with jQuery
 
         <li class="order-item">Name: Percy, Drink: Anything Blue</li>
         <li class="order-item">Name: Annabeth, Drink: Hot Latte</li> 
 
         -->
-      </ul>
+      <template id="order-template">
+        <li data-id={{id}}" class="order-item">
+          <p>
+            <span class="no-edit name">name: {{name}}</span>
+            <input class="edit name">
+          </p>
+          <p>
+            <span class="no-edit drink">drink: {{drink}}</span>
+            <input class="edit drink">
+          </p>
+          <button data-id={{id}} class="remove">X</button>
+          <button class="editOrder no-edit">Edit</button>
+          <button class="saveEdit edit">Save</button>
+          <button class="cancelEdit edit">Cancel</button>
+        </li>
+      </template>
+      
 
       <h3 class="headers">Add a Coffee Order</h3>
       <p>name: <input type="text" id="name"></p>
