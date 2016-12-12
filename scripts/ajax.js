@@ -7,7 +7,7 @@ $(function() {
 	var $orderButton = $('#add-order');
 
 	// Mustachejs
-	var orderTemplate = '<li class="order-item">name: {{name}}, drink: {{drink}}</li>';
+	var orderTemplate = '<li class="order-item">name: {{name}}, drink: {{drink}} <button class="remove-button">X</button></li>';
 
 	function addOrder(order) {
 		// $orders.append('<li class="order-item">name: ' + order.name + ', drink: ' + order.drink + '</li>');
