@@ -7,7 +7,8 @@ $(function() {
 	var $orderButton = $('#add-order');
 
 	// Mustachejs
-	var orderTemplate = '<li class="order-item">name: {{name}}, drink: {{drink}} <button class="remove-button">X</button></li>';
+	var orderTemplate = '<li class="order-item">name: {{name}}, drink: {{drink}}' +
+	'<p><button data-id={{id}} class="remove">X</button></p></li>';
 
 	function addOrder(order) {
 		// $orders.append('<li class="order-item">name: ' + order.name + ', drink: ' + order.drink + '</li>');
@@ -60,5 +61,21 @@ $(function() {
 
 	});
 
+	// DELETE
 
+	// .delegate() listens to any click events on $orders and only fires if it is part of the remove class
+	// gets past the issue of having a click on something that has not loaded yet 
+	$orders.delegate('.remove', 'click', function() {
+		// Grabs the parent li so it can remove it
+		var $li = $(this).closest('li');
+		$.ajax({
+			type: 'DELETE',
+			url: 'api/orders' + $(this).attr('data-id');
+			success: function() {
+				$li.fadeOut(300, function() {
+					$(this).remove();
+				});
+			}
+		});
+	});
 });
