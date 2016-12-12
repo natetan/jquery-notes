@@ -437,3 +437,250 @@ $(function() {
 	startSlider();
 })
 ```
+
+### Lesson 7: Ajax and RESTful API's
+- GET, POST, PUT, DELETE
+- .delegate()
+- Mustachejs (rendering)
+- `<template>` tags
+- [Learncode.academy RESTful API example](http://rest.learncode.academy/)
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Learning jQuery</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="styles/ajax.css">
+  </head>
+  <body>
+  <div id="main-content" class="bg-success">
+      <h1 class="headers">jQuery Ajax Example</h1>
+      <h2 class="headers">Coffee Orders</h2>
+      <ul id="orders"></ul>
+        <!-- This gets filled in with jQuery
+
+        <li class="order-item">Name: Percy, Drink: Anything Blue</li>
+        <li class="order-item">Name: Annabeth, Drink: Hot Latte</li> 
+
+        -->
+      <template id="order-template">
+        <li data-id={{id}}" class="order-item">
+          <p>
+            <span class="no-edit name">name: {{name}}</span>
+            <input class="edit name">
+          </p>
+          <p>
+            <span class="no-edit drink">drink: {{drink}}</span>
+            <input class="edit drink">
+          </p>
+          <button data-id={{id}} class="remove">X</button>
+          <button class="editOrder no-edit">Edit</button>
+          <button class="saveEdit edit">Save</button>
+          <button class="cancelEdit edit">Cancel</button>
+        </li>
+      </template>
+      <h3 class="headers">Add a Coffee Order</h3>
+      <p>name: <input type="text" id="name"></p>
+      <p>drink: <input type="text" id="drink"></p>
+      <button id="add-order">Add!</button>
+    </div>  
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/mustache/mustache.js"></script>
+    <script src="scripts/ajax.js"></script>  
+  </body>
+</html>
+```
+
+```CSS
+#main-content {
+	width: 90%;
+	margin: auto;
+	border: 5px solid black;
+	margin-top: 50px;
+	padding: 3%;
+}
+
+#main-content, #add-order, .order-item {
+	border-radius: 5px;
+}
+
+.headers {
+	font-family: Monaco, Menlo;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+#orders li {
+	list-style-type: none;
+}
+
+.order-item {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background: #fff;
+	width: 50%;
+	padding: 1%;
+}
+
+.remove {
+	margin: 3px;
+	color: red;
+}
+
+ul li .edit {
+	display: none;
+}
+
+ul li.edit .edit {
+	display: initial;
+}
+
+el li.edit .no-edit {
+	display: none;
+}
+```
+
+```JavaScript
+
+$(function() {
+	// Fields
+	var $orders = $('#orders');
+	var $name = $('#name');
+	var $drink = $('#drink');
+	var $orderButton = $('#add-order');
+
+	// Mustachejs
+	var orderTemplate = $('#order-template').html();
+
+	function addOrder(order) {
+		// $orders.append('<li class="order-item">name: ' + order.name + ', drink: ' + order.drink + '</li>');
+		// Renders template over order object, so {{name}} is order.name and {{drink}} is order.drink
+		$orders.append(Mustache.render(orderTemplate, order));
+	}
+
+	// url should be /api/orders when working with localhost
+	// using a hard-coded json file is buggy
+
+```
+
+#### GET
+
+```JavaScript
+
+	$.ajax({
+		type: 'GET',
+		url: 'api/orders.json',
+		success: function(data) {
+			console.log('success', data);
+
+			// each goes through each item in an array and lets you run a function over them
+			// requires index, and name of each item
+			$.each(JSON.parse(data), function(index, item) {
+				addOrder(item);
+			});
+		}, 
+		error: function() {
+			alert('error loading server');
+		}
+	});
+
+```
+
+#### POST
+
+```JavaScript
+
+	$orderButton.on('click', function() {
+		// JavaScript Object
+		var order = {
+			name: $name.val(),
+			drink: $drink.val(), 
+		};
+		$.ajax({
+			type: 'POST',
+			url: 'api/orders.json',
+			// must pass in data for post (our order object)
+			data: order,
+			success: function(newItem) {
+				addOrder(newItem);
+			},
+			error: function() {
+				alert('error posting data to server');
+			}
+		});
+	});
+
+```
+
+#### DELETE
+
+```JavaScript
+
+	// .delegate() listens to any click events on $orders and only fires if it is part of the remove class
+	// gets past the issue of having a click on something that has not loaded yet 
+	$orders.delegate('.remove', 'click', function() {
+		// Grabs the parent li so it can remove it
+		var $li = $(this).closest('li');
+		$.ajax({
+			type: 'DELETE',
+			url: '/api/orders' + $(this).attr('data-id');
+			success: function() {
+				$li.fadeOut(300, function() {
+					$(this).remove();
+				});
+			}, error: function() {
+				alert('error deleting item');
+			}
+		});
+	});
+
+```
+#### PUT
+
+```JavaScript
+
+	$orders.delegate('.editOrder', 'click', function() {
+		var $li = $(this).closest('li'); 
+		// Fills the fields with the input that is already in
+		$li.find('input.name').val($li.find('span.name').html());
+		$li.find('input.drink').val($li.find('span.drink').html());
+		$li.addClass('edit');
+	});
+
+	$orders.delegate('.cancelEdit', 'click', function() {
+		$(this).closest('li').removeClass('edit');
+	});
+
+	$orders.delegate('.saveEdit', 'click', function() {
+		var $li = $(this).closest('li');
+		var order = {
+			name: $li.find('input.name').val(),
+			drink: $li.find('input.drink').val(),
+		};
+
+		$.ajax({
+			type: 'PUT',
+			url: '/api/orders/' + $li.attr('data-id'),
+			data: order,
+			success: function(newOrder) {
+				$li.find('span.name').html(order.name);
+				$li.find('span.drink').html(order.drink);
+				$list.removeClass('edit');
+			},
+			error: function() {
+				alert('error updating data');
+			}
+		})
+	});
+});
+
+```
