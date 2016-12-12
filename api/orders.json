@@ -1,12 +1,9 @@
-[
-	{
-		"id":1, 
-		"name":"Percy", 
-		"drink":"Anything Blue"
-	},
-	{
-		"id":2, 
-		"name":"Annabeth", 
-		"drink":"Hot Caramel Latte"
-	}
-]
+[{
+	"id": 1,
+	"name": "Percy",
+	"drink": "Anything Blue"
+}, {
+	"id": 2,
+	"name": "Annabeth",
+	"drink": "Hot Caramel Latte"
+}]
