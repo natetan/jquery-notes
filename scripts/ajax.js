@@ -6,9 +6,17 @@ $(function() {
 	var $drink = $('#drink');
 	var $orderButton = $('#add-order');
 
+	// Mustachejs
+	var orderTemplate = '<li class="order-item">name: {{name}}, drink: {{drink}}</li>';
+
 	function addOrder(order) {
-		$orders.append('<li class="order-item">name: ' + order.name + ', drink: ' + order.drink + '</li>');
+		// $orders.append('<li class="order-item">name: ' + order.name + ', drink: ' + order.drink + '</li>');
+		// Renders template over order object, so {{name}} is order.name and {{drink}} is order.drink
+		$orders.append(Mustache.render(orderTemplate, order));
 	}
+
+	// url should be /api/orders when working with localhost
+	// using a hard-coded json file is buggy
 
 	// GET 
 	$.ajax({
