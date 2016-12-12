@@ -33,6 +33,14 @@
 	color: red;
 }
 
-.hide {
+ul li .edit {
+	display: none;
+}
+
+ul li.edit .edit {
+	display: initial;
+}
+
+el li.edit .no-edit {
 	display: none;
 }
