@@ -69,7 +69,7 @@ $(function() {
 		var $li = $(this).closest('li');
 		$.ajax({
 			type: 'DELETE',
-			url: '/api/orders' + $(this).attr('data-id');
+			url: '/api/orders' + $(this).attr('data-id'),
 			success: function() {
 				$li.fadeOut(300, function() {
 					$(this).remove();
